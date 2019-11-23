@@ -1,0 +1,20 @@
+#!/usr/bin/env python3
+#import sdnotify
+from time import sleep
+
+log = open(f'./hello.log','w+')
+
+#notifier = sdnotify.SystemdNotifier()
+#notifier.notify('READY=1')
+#notifier.notify('STATUS=Running')
+
+try:
+  while True:
+    print('Hello world!')
+    log.write('Hello world\n')
+    #notifier.notify('WATCHDOG=1')
+    sleep(2)
+except KeyboardInterrupt:
+    print('Exiting...')
+finally:
+  pass

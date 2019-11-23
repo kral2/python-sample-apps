@@ -1,0 +1,12 @@
+[Unit]
+Description=My Flask/Waitress Hello World App
+
+[Service]
+Environment=PYTHONUNBUFFERED=true
+
+ExecStart=/usr/bin/python3 /usr/local/bin/myapp.py
+
+Type=notify
+#WatchdogSec=20
+Restart=on-failure
+#RestartSec=10
