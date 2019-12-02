@@ -33,4 +33,3 @@ Working version, but still need some enhancements:
 - Tests and error handling,
 - Sample data. 
 
-Actually, input CSV file names should be shorter that 31 characters. Need to add a test here and truncate if needed.

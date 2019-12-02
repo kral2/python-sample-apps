@@ -1,5 +1,6 @@
-from os import listdir
-import pandas as pd
+from os import listdir # needed to filter files with a specific extension inside a folder
+import pandas as pd # needed to import and export excel files
+import re # needed to work with regex
 
 working_dir = './files/20191129'
 file_extension = '.csv'
@@ -25,11 +26,13 @@ def merge_csv_files_to_xlsx():
     i = 0
     for file in csv_list:
         current_csv = working_dir + '/' + csv_list[i]
-        print(f'import {current_csv}')
+        worksheet_name = re.search(r'([a-z]*)_([a-z_]*).csv', f'{csv_list[i]}', re.IGNORECASE) # regex to cut anything before the first underscore and supress file extension
+        worksheet_name = worksheet_name.group(2)[:31] # set the worksheet name & truncate if longer than 31 chars
+        print(f'import {current_csv} to worksheet: {worksheet_name}')
         current_csv_dataframe = pd.read_csv(current_csv)
-        current_csv_dataframe.to_excel(writer, index=None, header=True, sheet_name=f'{csv_list[i]}')
+        current_csv_dataframe.to_excel(writer, index=None, header=True, sheet_name=worksheet_name)
         i = i +1
-    workbook  = writer.book
+    workbook  = writer.book # not used at the moment. Needed to expose the pandas data frame to xlsxwriter and execute additionnal manipulations.
     writer.save()
     writer.close()
     print(f'{output_merged_xslx} generated. It contains {i} worksheets (one per imported csv file).')
