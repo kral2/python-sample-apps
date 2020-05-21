@@ -10,11 +10,13 @@ It makes use of pandas and XlsxWriter.
 At the top of the script, initialize your variables as needed :
 
 - the folder where the CSV files are stored,
-- the path and file name where to put the merge excel file.
+- the path and file name where to put the merge excel file,
+- the regex pattern to match, inside re.compile().
 
 ``` python
 working_dir = './files/myfolder'
 output_merged_xslx = 'myfile.xlsx'
+regex_pattern= re.compile(r'([0-9_-a-z]*)_([a-zA-Z_-]*).csv', re.IGNORECASE)
 ```
 
 2. Get your python environment with the requirements up & running
@@ -31,5 +33,4 @@ Working version, but still need some enhancements:
 
 - Code comments & documentation,
 - Tests and error handling,
-- Sample data. 
-
+- Sample data.
